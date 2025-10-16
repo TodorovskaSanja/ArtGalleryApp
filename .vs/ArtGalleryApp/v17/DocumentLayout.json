@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Sanja\\Faks\\IV \u0441\u0435\u043C\u0435\u0441\u0442\u0430\u0440\\\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438\\\u041F\u0440\u043E\u0435\u043A\u0442\\ArtGalleryApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{33258050-2048-4B04-9899-A1F0447BC6D3}|ArtGalleryApp\\ArtGalleryApp.csproj|d:\\sanja\\faks\\iv \u0441\u0435\u043C\u0435\u0441\u0442\u0430\u0440\\\u0438\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438\\\u043F\u0440\u043E\u0435\u043A\u0442\\artgalleryapp\\artgalleryapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{33258050-2048-4B04-9899-A1F0447BC6D3}|ArtGalleryApp\\ArtGalleryApp.csproj|solutionrelative:artgalleryapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Sanja\\Faks\\IV \u0441\u0435\u043C\u0435\u0441\u0442\u0430\u0440\\\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438\\\u041F\u0440\u043E\u0435\u043A\u0442\\ArtGalleryApp\\ArtGalleryApp\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ArtGalleryApp\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Sanja\\Faks\\IV \u0441\u0435\u043C\u0435\u0441\u0442\u0430\u0440\\\u0418\u043D\u0442\u0435\u0440\u043D\u0435\u0442 \u0442\u0435\u0445\u043D\u043E\u043B\u043E\u0433\u0438\u0438\\\u041F\u0440\u043E\u0435\u043A\u0442\\ArtGalleryApp\\ArtGalleryApp\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ArtGalleryApp\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-15T19:25:16.835Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

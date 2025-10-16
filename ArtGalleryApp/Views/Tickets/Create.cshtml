@@ -1,0 +1,204 @@
+﻿@model ArtGalleryApp.Models.Ticket
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    td {
+        padding: 10px;
+        padding-right: 25px;
+    }
+
+    label {
+        color: green;
+    }
+</style>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h2 class="display-2 text-success">Buy tickets</h2>
+
+        <div id="tickets-info">
+            <div class="d-flex">
+                <div class="d-inline-block col-4">
+                    <img src="@Model.Event.ImageURL" style="max-width: 350px;" />
+                </div>
+                <div class="d-inline-block col-8">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.EventId)
+                    @Html.HiddenFor(model => model.UserId)
+                    @Html.HiddenFor(model => model.WhenBought)
+                    @Html.HiddenFor(model => model.Price, new { @id = "model-price" })
+
+                    <h3 class="display-6 text-success">@Model.Event.Name</h3>
+                    <hr />
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.Label("Name")
+                                <h5>@Model.User.Name @Model.User.Surname</h5>
+                            </td>
+                            <td>
+                                @Html.Label("Email")
+                                <h5>@Model.User.Email</h5>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>
+                                @Html.Label("Date")
+                                <h5>@Model.Event.Date</h5>
+                            </td>
+                            <td>
+                                @Html.Label("Time")
+                                <h5>@Model.Event.Time</h5>
+                            </td>
+                            <td>
+                                @Html.Label("Duration")
+                                <h5>@Model.Event.Duration hours</h5>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="table table-striped border">
+                        <thead>
+                            <tr>
+                                <th>Ticket price</th>
+                                <th>Number of tickets</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="tmp" ticket-price="@Model.Event.TicketPrice">€@Model.Event.TicketPrice</td>
+                                <td>
+                                    @Html.EditorFor(model => model.NumTickets, new { htmlAttributes = new { @class = "form-control", @id = "num-tickets", @min = 1, @style = "width: 15%;" } })
+                                </td>
+                                <td id="price" class="fw-bold">€@Model.Event.TicketPrice</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    @if (Model.Event.TicketPrice != 0)
+                    {
+                        <span id="btn-payment" class="btn btn-secondary">Proceed to payment</span>
+                    }
+                    else
+                    {
+                        <span id="btn-reservation" class="btn btn-secondary">Reserve tickets</span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div id="payment-info">
+            <div class="d-flex align-items-start align-content-start justify-content-evenly">
+                <div class="bg-light col-8 p-5 m-4" style="border-radius: 10px;">
+                    <div class="form-group d-inline-block w-100 mt-2">
+                        @Html.Label("Cardholder name")
+                        @Html.TextBox("cardholder-name", null, new { @class = "form-control", @style = "min-width: 100%;", @placeholder = "Name Surname", @id = "model-card-name" })
+                    </div>
+
+                    <div class="form-group d-inline-block w-100 mt-2">
+                        @Html.Label("Card number")
+                        @Html.TextBox("card-number", null, new { @class = "form-control", @style = "min-width: 100%;", @placeholder = "**** **** **** ****", @id = "model-card-number" })
+                    </div>
+
+                    <div class="d-flex justify-content-between w-100 mt-2">
+                        <div class="form-group d-inline-block w-100 me-2">
+                            @Html.Label("Expiry date", new { @class = "w-100" })
+                            @Html.TextBox("expiry-date", null, new { @class = "form-control w-100", @style = "min-width: 100%;", @placeholder = "12/29", @id = "model-card-date" })
+                        </div>
+                        <div class="form-group d-inline-block w-100 ms-2">
+                            @Html.Label("CVV2", new { @class = "w-100" })
+                            @Html.TextBox("cvv2", null, new { @class = "form-control w-100", @style = "min-width: 100%;", @placeholder = "***", @id = "model-card-cvv" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <span id="btn-info" class="btn btn-secondary">Back</span>
+                        <span id="btn-placeholder" class="btn btn-success">Confirm purchase</span>
+                        <button id="btn-confirm" type="submit" class="btn btn-success visually-hidden">Confirm purchase</button>
+                    </div>
+                </div>
+
+                <div id="resume" class="bg-light p-5 m-4 border" style="border-radius: 10px; border-style: dotted;">
+                    <table class="table">
+                        <tr>
+                            <td>Ticket price</td>
+                            <td class="text-end">€@Model.Event.TicketPrice</td>
+                        </tr>
+                        <tr>
+                            <td>Number of tickets</td>
+                            <td id="ticket-num" class="text-end">@Model.NumTickets</td>
+                        </tr>
+                        <tr class="fw-bold">
+                            <td>Total price</td>
+                            <td id="summary-price" class="text-end">€@Model.Event.TicketPrice</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<a href="/Events/Details/@Model.EventId" class="d-inline-block text-decoration-none text-secondary mt-3">
+    <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+    <span style="font-size: 20px;">Back to event</span>
+</a>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $("#payment-info").hide();
+
+            $("#num-tickets").on("input", function () {
+                var num = $(this).val();
+                var p = $("#tmp").attr("ticket-price");
+                var price = p * num;
+                console.log(price);
+                $("#price, #total-price, #summary-price").text("€" + price);
+                $("#ticket-num").text(num);
+                $("#model-price").val(price);
+            });
+
+            $("#btn-payment").on("click", function () {
+                $("#tickets-info").hide();
+                $("#payment-info").show();
+            });
+
+            $("#btn-info").on("click", function () {
+                $("#payment-info").hide();
+                $("#tickets-info").show();
+            });
+
+            $("#btn-placeholder").on("click", function () {
+                if (/[^a-zA-Z\s]/.test($("#model-card-name").val()) ||
+                    /[^0-9\s]/.test($("#model-card-number").val()) ||
+                    /[^0-9\/]/.test($("#model-card-date").val()) ||
+                    /[^0-9]/.test($("#model-card-cvv").val()) ||
+                    $("#model-card-cvv").val().length != 3 ||
+                    !$("#model-card-name").val() || !$("#model-card-number").val() ||
+                    !$("#model-card-date").val()) {
+                        alert("Invalid card info");
+                        return;
+                }
+                $("#btn-confirm").click();
+            });
+
+            $("#btn-reservation").on("click", function () {
+                $("#btn-confirm").click();
+            });
+        })
+    </script>
+}

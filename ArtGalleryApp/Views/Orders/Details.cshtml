@@ -1,0 +1,132 @@
+﻿@model ArtGalleryApp.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<body>
+    <div>
+        <div>
+            <h2 class="d-inline-block display-3 text-success">Order #@Model.Id</h2>
+            @if (User.IsInRole("Admin"))
+            {
+                <a href="/Orders/Delete/@Model.Id" class="d-inline-block btn btn-danger ms-4 mb-4">Delete order</a>
+            }
+        </div>
+        <div class="d-flex justify-content-around">
+            <div class="col-7 bg-light ps-5 pe-5 pt-4 pb-4">
+                <h3 class="d-inline-block">Order info</h3>
+                <hr />
+                <table class="table">
+                    <tr>
+                        <td class="fw-bold">Name</td>
+                        <td>@Model.Name @Model.Surname</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Email</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Address</td>
+                        <td>@Model.Address</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Phone number</td>
+                        <td>@Model.PhoneNumber</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">City</td>
+                        <td>@Model.City</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Country</td>
+                        <td>@Model.Country</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Shipping method</td>
+                        <td>@Model.ShippingMethod</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="summary" class="col-4 bg-light ps-5 pe-5 pt-4 pb-4">
+                <h3 class="d-inline-block">Order summary</h3>
+                <hr />
+                <div class="mt-4">
+                    @foreach (var item in Model.OrderArtworks)
+                    {
+                        <div class="d-flex mt-3 mb-3">
+                            <img src="@item.ArtworkImageURL" style="min-width: 120px; max-width:120px; height: 80px; object-fit: cover;" />
+                            <div class="d-inline-block m-2">
+                                <h5>@item.ArtworkName</h5>
+                                <h6 class="text-success">€@item.ArtworkPrice</h6>
+                            </div>
+                        </div>
+                    }
+                    <table class="table">
+                        <tr>
+                            <td>Subtotal</td>
+                            <td class="text-end">€@(Model.Total - Model.ShippingPrice)</td>
+                        </tr>
+                        <tr class="text-secondary">
+                            <td>Delivery</td>
+                            <td class="text-end">€@Model.ShippingPrice</td>
+                        </tr>
+                        <tr class="fw-bold">
+                            <td>Total</td>
+                            <td class="text-end">€@Model.Total</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <a href="/Orders/Index/@Model.UserId" class="d-inline-block text-decoration-none text-secondary mt-3">
+            <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+            @if (User.IsInRole("User"))
+            {
+                <span style="font-size: 20px;">See all of your orders</span>
+            }
+            else
+            {
+                <span style="font-size: 20px;">See all orders</span>
+            }
+        </a>
+
+        @if (TempData["alertMessage"] != null)
+        {
+            <div aria-live="polite" aria-atomic="true"
+                 class="position-fixed bottom-0 end-0 p-5" style="z-index: 9999;">
+                <div id="alertToast"
+                     class="toast align-items-center text-bg-success border-0"
+                     role="alert"
+                     aria-live="assertive"
+                     aria-atomic="true"
+                     data-bs-autohide="true"
+                     data-bs-delay="4000">
+                    <div class="d-flex">
+                        <div class="toast-body h6">
+                            @TempData["alertMessage"]
+                        </div>
+                        <button type="button"
+                                class="btn-close btn-close-white me-2 m-auto"
+                                data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>
+
+@section Scripts {
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toastEl = document.getElementById("alertToast");
+        if (toastEl) {
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+    });
+    </script>
+}

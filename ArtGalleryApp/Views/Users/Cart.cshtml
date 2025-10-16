@@ -1,0 +1,133 @@
+﻿@model ArtGalleryApp.Models.User
+@{
+    ViewBag.Title = "Cart";
+}
+
+<div style="min-height: 80vh;">
+    <h2 class="display-3 text-success">Shopping cart</h2>
+
+    <div id="empty-cart" class="text-center bg-light p-5 m-4 align-items-center align-content-center" style="border-radius: 20px; min-height: 65vh;">
+        <img src="~/Content/Images/cart_empty.png" style="width: 200px;" />
+        <h3 class="display-6">Your cart is empty</h3>
+        <a href="/Artworks/" class="text-success fs-5">Browse artworks</a>
+    </div>
+
+    @if (Model.Cart.Count() == 0)
+    {
+        <div class="text-center bg-light p-5 m-4 align-items-center align-content-center" style="border-radius: 20px; min-height: 65vh;">
+            <img src="~/Content/Images/cart_empty.png" style="width: 200px;" />
+            <h3 class="display-6">Your cart is empty</h3>
+            <a href="/Artworks/" class="text-success fs-5">Browse artworks</a>
+        </div>
+    }
+    else
+    {
+        <div id="cart-table">
+            <table class="table table-striped border mt-3">
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Artwork</th>
+                        <th></th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 0;
+                        int total = 0;
+                        foreach (var item in Model.Cart)
+                        {
+                            i += 1;
+                            total += item.Price;
+                            <tr>
+                                <td>@i</td>
+                                <td class="d-flex">
+                                    <div>
+                                        <img src="@item.ImageURL" style="height:100px; width: 140px; object-fit: cover" />
+                                    </div>
+                                    <div class="ms-3">
+                                        <a class="text-decoration-none text-dark" href="/Artworks/Details/@item.Id"><h5>@item.Name</h5></a>
+                                        @if (item.Artist != null)
+                                        {
+                                            <a class="text-decoration-none text-success h6" href="/Artists/Details/@item.Artist.Id">
+                                                @item.ArtistName
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <p class="text-success h6">@item.ArtistName</p>
+                                        }
+                                        <button art-id="@item.Id" class="d-block btn-remove-cart btn btn-secondary mt-2">Remove</button>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td id="@item.Id-price">€@item.Price</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="fw-bold" colspan="3">Total</td>
+                        <td id="total">€@total</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="d-flex justify-content-between align-items-end">
+                <a href="/Users/Details/@Model.Id" class="d-inline-block text-decoration-none text-secondary mt-3">
+                    <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+                    <span style="font-size: 20px;">View profile</span>
+                </a>
+                <a href="/Users/Checkout/@Model.Id" class="btn btn-success ms-2" style="">Checkout</a>
+            </div>
+        </div>
+    }
+    @if (Model.Cart.Count() == 0)
+    {
+        <a href="/Users/Details/@Model.Id" class="d-inline-block text-decoration-none text-secondary mt-3">
+            <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+            <span style="font-size: 20px;">View profile</span>
+        </a>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#empty-cart").hide();
+
+            $('.btn-remove-cart').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artworks/RemoveFromCart/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully removed artwork with id " + id + " from cart");
+                            var rmv = button.parent().parent().parent();
+                            var change = rmv.nextAll();
+                            change.each(function () {
+                                console.log($(this).children().first());
+                                var tmp = parseInt($(this).children().first().text());
+                                $(this).children().first().text(tmp - 1);
+                            })
+                            var price = parseInt($("#" + id + "-price").text().slice(1));
+                            var total = parseInt($("#total").text().slice(1));
+                            $("#total").text("€" + (total - price));
+                            rmv.remove();
+
+                            if ($(".btn-remove-cart").length == 0) {
+                                console.log("no artworks in cart");
+                                $("#cart-table").hide();
+                                $("#empty-cart").show();
+                            }
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+        })
+    </script>
+}

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    #welcome {
+        background-image: url("/Content/Images/gradient.png"),url("/Content/Images/gallery4.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 500px;
+    }
+</style>
+
+<main>
+    <div id="carousel" class="carousel slide position-absolute" data-bs-ride="carousel" style=" width: 100% !important; height: 440px ; left: 0px; top: 66px;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block h-50 w-100" src="~/Content/Images/gallery1.jpg" alt="First slide" style="max-height: 440px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="~/Content/Images/gallery2.jpg" alt="Second slide" style="max-height: 440px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="~/Content/Images/gallery3.jpg" alt="Third slide" style="max-height: 440px; object-fit: cover;">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div style="margin-top: 455px;">
+        <div class="d-flex justify-content-between">
+            <a class="d-inline-block text-decoration-none text-white text-center shadow display-5" style="padding: 70px 0; width: 415px; background-color: #769065; border-radius: 10px;" href="/Artworks/">Artworks</a>
+            <a class="d-inline-block text-decoration-none text-white text-center shadow display-5" style="padding: 70px 0; width: 415px; background-color: #8fa680; border-radius: 10px;" href="/Events/">Events</a>
+            <a class="d-inline-block text-decoration-none text-white text-center shadow display-5" style="padding: 70px 0; width: 415px; background-color: #a8ba9d; border-radius: 10px;" href="/Artists/">Artists</a>
+        </div>
+        <br />
+        <div class="row-cols-2 border ps-3 pt-5 pb-5 mt-5 mb-5" style="margin-top: 30px; border-radius: 10px;">
+            <p class="col-lg-3 d-inline-block display-1 text-success text-end" style="font-size:120px; line-height: 90px;">About us</p>
+            <p class="col-lg-8 d-inline-block h5 m-xl-5"><span class="h1" style="font-family: 'Kablammo', Arial;">Gallart</span> was founded in 2023 and has been an integral part of the city's culture since the start. Gallart is a place where every artist can exhibit their art and sell it if they wish to. It's a community where people can schedule events and have a fun time while being surrounded with the best of our local artists. Our mission is to show the people's culture while also allowing people to have a good time.</p>
+        </div>
+    </div>
+
+    <div id="welcome" class="align-content-center shadow p-5">
+        <h1 class="display-1 text-white col-6 m-5" style="font-size: 90px; font-family: 'Lacquer';">Be a part of our community</h1>
+    </div>
+
+</main>

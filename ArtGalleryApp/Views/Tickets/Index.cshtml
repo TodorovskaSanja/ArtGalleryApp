@@ -1,0 +1,107 @@
+﻿@model IEnumerable<ArtGalleryApp.Models.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .ticket-card {
+        background-image: url("/Content/Images/ticket_bg.jpg");
+        background-size: contain;
+    }
+
+    #background {
+        z-index: -100;
+    }
+</style>
+
+<div style="min-height: 80vh;">
+    <img id="background" class="position-absolute w-100 h-100" src="~/Content/Images/background.jpg" style="top: 0; left: 0; object-fit: cover; opacity: 75%;" />
+    <h2 class="text-success display-2">Tickets</h2>
+    <p class="text-secondary">The tickets you've purchased for the events held at our gallery.</p>
+
+    @if (Model.Count() == 0)
+    {
+        <div class="text-center bg-light p-5 m-4 align-content-center" style="border-radius: 20px; min-height: 60vh;">
+            <img src="~/Content/Images/no_ticket.png" style="width: 200px;" />
+            <h3 class="display-6">You have no purchased tickets</h3>
+            <a href="/Events/" class="text-success">Browse events</a>
+        </div>
+    }
+    else
+    {
+        <div id="carousel" class="carousel slide d-flex align-items-baseline mt-5" data-bs-interval="false">
+            <div class="carousel-inner">
+                @{
+                    var allTickets = Model.ToList();
+                    var chunkSize = 2; // number of cards per slide
+                    var total = allTickets.Count;
+                    var slideIndex = 0;
+
+                    for (int i = 0; i < total; i += chunkSize)
+                    {
+                        var chunk = allTickets.Skip(i).Take(chunkSize).ToList();
+                    }
+                }
+
+                @for (int i = 0; i < allTickets.Count; i += chunkSize)
+                {
+                    var chunk = allTickets.Skip(i).Take(chunkSize).ToList();
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <div class="cards-wrapper">
+                            @foreach (var item in chunk)
+                            {
+                                <a class="text-decoration-none text-dark" href="/Tickets/Details/@item.Id">
+                                    <div class="ticket-card d-inline-block m-3" style="width: 600px; height: 290px; padding: 70px 95px;">
+                                        <h3 class="fw-bold text-truncate">@item.Event.Name</h3>
+                                        @if (item.User != null)
+                                        {
+                                        <h5>@item.User.Name @item.User.Surname</h5>
+                                        }
+                                        <img src="~/Content/Images/date.png" style="width:30px" />
+                                        <span>@item.Event.Date</span>
+                                        <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                        <span>@item.Event.Time</span>
+                                        <img src="~/Content/Images/people.png" class="ms-2" style="width:28px;" />
+                                        <span>@item.NumTickets</span>
+                                        <img src="~/Content/Images/price.png" class="ms-2" style="width:28px;" />
+                                        @if (item.Price == 0)
+                                        {
+                                            <span>Free</span><br />
+                                            <span><span class="fw-bold">Bought:</span> @item.WhenBought</span>
+                                            <h5 class="fw-bold">Free entry</h5>
+                                        }
+                                        else
+                                        {
+                                            <span>€@item.Event.TicketPrice</span><br />
+                                            <span><span class="fw-bold">Bought:</span> @item.WhenBought</span>
+                                            <h5 class="fw-bold">Price: €@item.Price</h5>
+                                        }
+                                    </div>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (allTickets.Count > 2)
+            {
+                <a class="carousel-control-prev text-dark" href="#carousel" role="button" data-bs-slide="prev" style="left:-100px; width: 100px;">
+                    <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                </a>
+                <a class="carousel-control-next text-dark" href="#carousel" role="button" data-bs-slide="next" style="right:-100px; width: 100px;">
+                    <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                </a>
+            }
+        </div>
+    }
+
+    @if (ViewBag.usrId != null)
+    {
+    <a href="/Users/Details/@ViewBag.usrId" class="d-inline-block text-decoration-none text-secondary mt-3">
+        <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+        <span style="font-size: 20px;">View profile</span>
+    </a>
+    }
+</div>

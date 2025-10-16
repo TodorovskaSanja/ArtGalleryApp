@@ -1,0 +1,109 @@
+﻿@model ArtGalleryApp.Models.User
+@{
+    ViewBag.Title = "Favorites";
+}
+
+<div>
+    <h2 class="display-3 text-success">My favorites</h2>
+    <p class="text-secondary">A list of pieces that resonate best with your interests and love for art.</p>
+
+    @if (Model.FavoriteArtworks.Count() == 0)
+    {
+        <div class="text-center bg-light p-5 m-4 align-items-center align-content-center" style="border-radius: 20px; min-height: 60vh;">
+            <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+            <h3 class="display-6">Your favorites list is empty</h3>
+            <a href="/Artworks/" class="text-success fs-5">Browse artworks</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            @foreach (var item in Model.FavoriteArtworks)
+            {
+                <div class="card d-inline-block mt-3 me-2" style="width: 310px; height: 430px;">
+                    <a class="text-dark" href="/Artworks/Details/@item.Id">
+                        <div class="text-center pt-3 pb-3">
+                            <img src="@item.ImageURL" style="width: 280px; height: 250px; object-fit: cover;" />
+                        </div>
+                    </a>
+                    <a class="text-decoration-none text-dark" href="/Artworks/Details/@item.Id">
+                        <div class="d-inline-block col-9 text-start ps-3">
+                            <h3 title="@item.Name" class="text-truncate" style="line-height: 40px;">@item.Name</h3>
+                            <h6>
+                                @if (item.Artist != null)
+                                {
+                                    <a class="text-decoration-none text-success h6" href="/Artists/Details/@item.Artist.Id">
+                                        @item.ArtistName
+                                    </a>
+                                }
+                                else
+                                {
+                                    <p class="text-success h6">@item.ArtistName</p>
+                                }
+                            </h6>
+                            <h6 class="text-secondary" style="font-size: 14px;">@item.Category</h6>
+                            @if (item.Status.Equals("For sale"))
+                            {
+                                <p>€@item.Price</p>
+                            }
+                            else
+                            {
+                                <p>Not for sale</p>
+                            }
+
+                            @if (Model.FavoriteArtworks.Contains(item))
+                            {
+                                <img art-id="@item.Id" class="unfavorite position-absolute" style="bottom: 15px; right: 15px; height: 30px; width: 30px;" src="~/Content/Images/red_heart.png" />
+                            }
+                            else
+                            {
+                                <a href="/Artworks/Favorite/@item.Id"><img art-id="@item.Id" class="favorite position-absolute" style="bottom: 15px; right: 15px; height: 30px; width: 30px;" src="~/Content/Images/white_heart.png" /></a>
+                            }
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    }
+
+    <a href="/Users/Details/@Model.Id" class="d-inline-block text-decoration-none text-secondary mt-3">
+        <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+        <span style="font-size: 20px;">View profile</span>
+    </a>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".card").hover(function () {
+                $(this).css("background-color", "#ECECEC");
+                $(this).css("box-shadow", "5px 5px 10px lightgray");
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("box-shadow", "0px 0px 0px lightgray");
+            })
+
+            $(".unfavorite").hover(function () {
+                $(this).css("cursor", "pointer");
+            }, function () {
+                $(this).css("cursor", "auto");
+            })
+
+            $('.unfavorite').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artworks/Unfavorite/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully removed artwork with id " + id + " from favorites");
+                            button.parent().parent().remove();
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+        })
+    </script>
+}

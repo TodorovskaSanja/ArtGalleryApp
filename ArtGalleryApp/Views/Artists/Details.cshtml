@@ -1,0 +1,343 @@
+﻿@model ArtGalleryApp.Models.Artist
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<style>
+    .truncate-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+
+<div class="mt-5 mb-4">
+    <div id="bio">
+        <div class="d-flex align-items-start">
+            <img class="shadow-lg m-3" src="@Model.ImageURL" style="width: 290px; height: 350px; object-fit: cover;" />
+            <div class="ms-3">
+                <div class="d-flex align-items-center align-content-center">
+                    <h1 class="d-inline-block display-2">@Model.Name @Model.Surname</h1>
+                    @if (User.IsInRole("User"))
+                    {
+                        if (((List<int>)Session["arts"]).Contains(Model.Id))
+                        {
+                            <a href="/Artists/UnfollowArtist/@Model.Id" class="d-inline-block text-decoration-none text-dark ms-4"><button class="unfollow btn btn-danger">Unfollow</button></a>
+                        }
+                        else
+                        {
+                            <a href="/Artists/FollowArtist/@Model.Id" class="d-inline-block text-decoration-none text-dark ms-4"><button class="follow btn btn-success">Follow</button></a>
+                        }
+                    }
+                </div>
+                <div class="d-flex justify-content-around w-25">
+                    <span class="text-center"><span class="fw-bold fs-4">@Model.Artworks.Count()</span><br />Artworks</span>
+                    <span class="ms-4 text-center"><span class="fw-bold fs-4">@Model.Events.Where(model => model.Status == "Approved").Count()</span><br />Events</span>
+                    <span class="ms-4 text-center"><span class="fw-bold fs-4">@Model.NumFollowers</span><br />Followers</span>
+                </div>
+                @if (User.Identity.GetUserName() == Model.Email)
+                {
+                    <div class="mt-3 mb-1">
+                        <a href="/Artists/Edit/@Model.Id"><button class="btn btn-secondary ms-2 p-2">Edit profile</button></a>
+                        <a href="/Artists/Delete/@Model.Id"><button class="btn btn-danger ms-2 p-2">Delete profile</button></a>
+                    </div>
+                }
+                <br />
+                <p class="d-inline-block">@Model.Biography</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="arts" class="mt-5">
+        @if (User.Identity.GetUserName() == Model.Email)
+        {
+            <h3 class="d-inline-block display-6 text-success">Your artworks (@Model.Artworks.Count())</h3>
+            <a href="/Artworks/Create">
+                <button class="btn btn-light ms-2 mb-4 p-2">
+                    <img src="~/Content/Images/plus.png" style="width: 12px;" />
+                    <span>Add to collection</span>
+                </button>
+            </a>
+        }
+        else
+        {
+            <h3 class="d-inline-block display-6 text-success">@(Model.Name)'s artworks (@Model.Artworks.Count())</h3>
+
+        }
+        <div id="carouselArts" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-inner">
+
+                @{
+                    var allArts = Model.Artworks.ToList();
+                    int chunkSize = 4; // number of cards per slide
+                    int total = allArts.Count;
+                    int slideIndex = 0;
+
+                    for (int i = 0; i < total; i += chunkSize)
+                    {
+                        var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                    }
+                }
+
+                @for (int i = 0; i < allArts.Count; i += chunkSize)
+                {
+                    var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <div class="cards-wrapper">
+                            @foreach (var art in chunk)
+                            {
+                                <div class="card d-inline-block mt-3 me-2" style="width: 310px; height: 440px;">
+                                    <a class="text-dark" href="/Artworks/Details/@art.Id">
+                                        <div class="text-center pt-3 pb-3">
+                                            <img src="@art.ImageURL" style="width: 280px; height: 250px; object-fit: cover;" />
+                                        </div>
+                                    </a>
+                                    <a class="text-decoration-none text-dark" href="/Artworks/Details/@art.Id">
+                                        <div class="d-inline-block col-9 text-start ps-3">
+                                            <h3 title="@art.Name" class="text-truncate" style="line-height: 40px;">@art.Name</h3>
+                                            <h6>
+                                                <a class="text-decoration-none text-success h6" href="/Artists/Details/@art.Artist.Id">
+                                                    @art.Artist.Name @art.Artist.Surname
+                                                </a>
+                                            </h6>
+                                            <h6 class="text-secondary" style="font-size: 14px;">@art.Category</h6>
+                                            @if (art.Status == "For sale")
+                                            {
+                                                <p>€@art.Price</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@art.Status</p>
+                                            }
+                                        </div>
+                                    </a>
+                                    @if (User.IsInRole("User"))
+                                    {
+                                        if (((List<int>)Session["fav-arts"]).Contains(art.Id))
+                                        {
+                                            <img art-id="@art.Id" class="unfavorite position-absolute" style="bottom: 15px; right: 15px; height: 30px; width: 30px;" src="~/Content/Images/red_heart.png" />
+                                        }
+                                        else
+                                        {
+                                            <img art-id="@art.Id" class="favorite position-absolute" style="bottom: 15px; right: 15px; height: 30px; width: 30px;" src="~/Content/Images/white_heart.png" />
+                                        }
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (allArts.Count > 4)
+            {
+                <a class="carousel-control-prev position-absolute text-dark" href="#carouselArts" role="button" data-bs-slide="prev" style="left:-100px; width: 100px;">
+                    <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                </a>
+                <a class="carousel-control-next position-absolute text-dark" href="#carouselArts" role="button" data-bs-slide="next" style="right:-100px; width: 100px;">
+                    <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                </a>
+            }
+        </div>
+
+        @if (@Model.Artworks.Count() == 0)
+        {
+            <div class="text-center bg-light m-4 p-2 align-content-center" style="border-radius: 20px;">
+                <img src="~/Content/Images/empty1.png" style="width: 150px;" />
+                <h3 class="display-6">No artworks to show</h3>
+            </div>
+        }
+    </div>
+
+    <div id="events" class="mt-5">
+        @if (User.Identity.GetUserName() == Model.Email)
+        {
+            <h3 class="d-inline-block display-6 text-success">Your events (@Model.Events.Where(model => model.Status == "Approved").Count())</h3>
+            <a href="/Events/Create">
+                <button class="btn btn-light ms-2 mb-3 p-2">
+                    <img src="~/Content/Images/plus.png" style="width: 12px;" />
+                    <span>Schedule new event</span>
+                </button>
+            </a>
+        }
+        else
+        {
+            <h3 class="d-inline-block display-6 text-success">@(Model.Name)'s events (@Model.Events.Where(model => model.Status == "Approved").Count())</h3>
+        }
+        <div>
+            @foreach (var ev in Model.Events.Where(m => m.Status == "Approved").ToList())
+            {
+                <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                    <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                        <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                        <div class="d-inline-block col-10 ms-3">
+                            <h2 class="display-5 text-success">@ev.Name</h2>
+                            <div class="mt-3 mb-3">
+                                <img src="~/Content/Images/date.png" style="width:30px" />
+                                <span>@ev.Date</span>
+                                <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                <span>@ev.Time</span>
+                            </div>
+                            <p class="truncate-3">@ev.Description</p>
+                        </div>
+                    </div>
+                </a>
+            }
+            @if (Model.Events.Where(m => m.Status == "Approved").Count() == 0)
+            {
+                <div class="text-center bg-light p-4 m-4" style="border-radius: 20px;">
+                    <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+                    <h3 class="display-6">No events to show</h3>
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (User.Identity.GetUserName() == Model.Email && Model.Events.Where(m => m.Status == "Pending").Count() != 0)
+    {
+        <div class="mt-4">
+            <h3 class="d-inline-block display-6 text-success">Pending events (@Model.Events.Where(model => model.Status == "Pending").Count())</h3>
+            <div>
+                @foreach (var ev in Model.Events.Where(m => m.Status == "Pending").ToList())
+                {
+                    <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                        <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                            <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                            <div class="d-inline-block col-10 ms-3">
+                                <h2 class="display-5 text-success">@ev.Name</h2>
+                                <div class="mt-3 mb-3">
+                                    <img src="~/Content/Images/date.png" style="width:30px" />
+                                    <span>@ev.Date</span>
+                                    <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                    <span>@ev.Time</span>
+                                </div>
+                                <p class="truncate-3">@ev.Description</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+
+    @if (User.Identity.GetUserName() == Model.Email && Model.Events.Where(m => m.Status == "Denied").Count() != 0)
+    {
+        <div class="mt-4">
+            <h3 class="d-inline-block display-6 text-success">Cancelled events (@Model.Events.Where(model => model.Status == "Denied").Count())</h3>
+            <div>
+                @foreach (var ev in Model.Events.Where(m => m.Status == "Denied").ToList())
+                {
+                    <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                        <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                            <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                            <div class="d-inline-block col-10 ms-3">
+                                <h2 class="display-5 text-success">@ev.Name</h2>
+                                <div class="mt-3 mb-3">
+                                    <img src="~/Content/Images/date.png" style="width:30px" />
+                                    <span>@ev.Date</span>
+                                    <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                    <span>@ev.Time</span>
+                                </div>
+                                <p class="truncate-3">@ev.Description</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".card").hover(function () {
+                $(this).css("background-color", "#ECECEC");
+                $(this).css("box-shadow", "5px 5px 10px lightgray");
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("box-shadow", "0px 0px 0px lightgray");
+            })
+
+            $(".favorite, .unfavorite").hover(function () {
+                $(this).css("cursor", "pointer");
+            }, function () {
+                $(this).css("cursor", "auto");
+            })
+
+            $('.favorite').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artworks/Favorite/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully added artwork with id " + id + " to favorites");
+                            button.removeClass("favorite");
+                            button.addClass("unfavorite");
+                            button.attr("src", "https://pics.clipartpng.com/Heart_Shape_PNG_Clipart-3166.png")
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+
+            $('.unfavorite').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artworks/Unfavorite/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully removed artwork with id " + id + " from favorites");
+                            button.removeClass("unfavorite");
+                            button.addClass("favorite");
+                            button.attr("src", "https://openclipart.org/image/2000px/234835")
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+
+            $("div.event").hover(function () {
+                $(this).css("background", "linear-gradient(#BBBBBB, lightgray)").animate({ margin: "14px" });
+            }, function () {
+                $(this).css("background", "linear-gradient(lightgray, #EFEFEF)").animate({ margin: "10px" });
+            });
+
+            $("#btn-approve").on("click", function () {
+                var evId = $(this).attr("ev-Id");
+                console.log(evId);
+
+                bootbox.confirm({
+                    title: 'Approve event?',
+                    message: 'Are you sure you want to approve the event?',
+                    centerVertical: true,
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-secondary'
+                        }
+                    },
+                    callback: function (result) {
+                        console.log('This was logged in the callback: ' + result);
+                        if (result) {
+                            window.location.href = "/Events/ApproveEvent/" + evId;
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+}

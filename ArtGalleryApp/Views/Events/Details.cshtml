@@ -1,0 +1,215 @@
+﻿@model ArtGalleryApp.Models.Event
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<body>
+    <div>
+        <div class="d-flex justify-content-evenly align-items-center">
+            <div class="me-5">
+                <img src="@Model.ImageURL" style="max-height:615px; max-width: 650px;" />
+            </div>
+            <div>
+                <h2 class="display-2">@Model.Name</h2>
+                @if (Model.Artist != null)
+                {
+                    <div>
+                        <h5 class="d-inline-block text-secondary mt-3 mb-3">Organized by: <a href="/Artists/Details/@Model.ArtistId" class="text-success text-decoration-none">@Model.ArtistName</a></h5>
+                        @if (Model.Artist != null && User.IsInRole("Artist") && User.Identity.GetUserName() == Model.Artist.Email && (!(DateTime.Parse(Model.Date) > DateTime.Now.Date
+                    || (DateTime.Parse(Model.Date) == DateTime.Now.Date && @DateTime.Parse(Model.Time).TimeOfDay > @DateTime.Now.TimeOfDay)) || Model.Status == "Denied"))
+                        {
+                            <a href="/Events/Delete/@Model.Id" class="btn btn-danger p-1 ms-2 me-1" style="border-radius: 25px; font-size: 20px; width: 220px;">Remove this event</a>
+                            
+                        }
+                    </div>
+                    
+                }
+                else
+                {
+                    <h5 class="text-secondary mt-3 mb-3">Organized by: <span class="text-success">@Model.ArtistName</span></h5>
+                }
+                <p>@Model.Description</p>
+
+                <h3 class="mt-4">Event Details</h3>
+                <table class="table mt-3 mb-4" style="min-width: 400px; max-width: 600px;">
+                    <tr>
+                        <td class="fw-bold">Date</td>
+                        <td>@Model.Date</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Time (start)</td>
+                        <td>@Model.Time</td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold">Duration</td>
+                        <td>@Model.Duration hours</td>
+                    </tr>
+                </table>
+
+                <div class="d-flex align-content-start align-items-start">
+                    <div class="d-inline-block">
+                        @if (Model.Status == "Pending")
+                        {
+                            <div>
+                                <h5 class="d-inline-block text-secondary">Status: Waiting for approval</h5>
+                                @if (Model.Artist != null && User.IsInRole("Artist") && User.Identity.GetUserName() == Model.Artist.Email)
+                                {
+                                <a href="/Events/Edit/@Model.Id" class="btn btn-secondary ms-2 mb-2">Edit details</a>
+                                }
+                            </div>
+                        }
+
+                        @if (Model.TicketPrice == 0)
+                        {
+                            <h5 class="mt-4 mb-4 fw-bold">Free entry</h5>
+                        }
+                        else
+                        {
+                            <h5 class="mt-4 mb-4"><span class="fw-bold">Ticket price:</span> <span class="fw-normal" style="font-size: 25px;">€@Model.TicketPrice</span></h5>
+                        }
+
+                        @if (Model.Status.Equals("Approved"))
+                        {
+                            if (DateTime.Parse(Model.Date) > DateTime.Now.Date
+                            || (DateTime.Parse(Model.Date) == DateTime.Now.Date && @DateTime.Parse(Model.Time).TimeOfDay > @DateTime.Now.TimeOfDay))
+                            {
+                                if (User.IsInRole("User"))
+                                {
+                                    <a href="/Tickets/Create/@Model.Id" class="text-decoration-none text-dark"><button class="btn btn-success p-2 me-2" style="border-radius: 25px; font-size: 22px; width: 230px;">Buy tickets</button></a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-secondary p-2 me-2 disabled" style="border-radius: 25px; font-size: 22px; width: 230px;">Upcoming event</button>
+                                }
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary p-2 me-2 disabled" style="border-radius: 25px; font-size: 22px; width: 230px;">Event ended</button>
+                            }
+                        }
+
+                        @if (User.IsInRole("Admin") && Model.Status.Equals("Pending"))
+                        {
+                            <button id="btn-approve" ev-id="@Model.Id" class="btn btn-success p-2 me-2" style="border-radius: 25px; font-size: 22px; width: 230px;">Approve</button>
+                            <button id="btn-deny" ev-id="@Model.Id" class="btn btn-danger p-2 me-2" style="border-radius: 25px; font-size: 22px; width: 230px;">Deny</button>
+                        }
+
+                        @if (Model.Status == "Denied")
+                        {
+                            <button class="btn btn-danger disabled p-2" style="border-radius: 25px; font-size: 22px; width: 230px;">Cancelled</button>
+
+                        }
+                    </div>
+                    @if (Model.Artist != null && User.Identity.GetUserName() == Model.Artist.Email && Model.Status == "Denied" && Model.Comment != null)
+                    {
+                        <div class="card d-inline-block text-bg-dark m-4 p-3">
+                            <h5>Comment from admin for event's cancellation:</h5>
+                            <p>@Model.Comment</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="/Events/" class="d-inline-block text-decoration-none text-secondary mt-3">
+        <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+        <span style="font-size: 20px;">Back to events</span>
+    </a>
+
+    @if (TempData["alertMessage"] != null)
+    {
+        <div aria-live="polite" aria-atomic="true"
+             class="position-fixed bottom-0 end-0 p-5" style="z-index: 9999;">
+            <div id="alertToast"
+                 class="toast align-items-center text-bg-success border-0"
+                 role="alert"
+                 aria-live="assertive"
+                 aria-atomic="true"
+                 data-bs-autohide="true"
+                 data-bs-delay="4000">
+                <div class="d-flex">
+                    <div class="toast-body h6">
+                        @TempData["alertMessage"]
+                    </div>
+                    <button type="button"
+                            class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toastEl = document.getElementById("alertToast");
+            if (toastEl) {
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        });
+
+        $(document).ready(function () {
+            $("#btn-approve").on("click", function () {
+                var evId = $(this).attr("ev-Id");
+                console.log(evId);
+
+                bootbox.confirm({
+                    title: 'Approve event?',
+                    message: 'Are you sure you want to approve the event?',
+                    centerVertical: true,
+                    buttons: {
+                        confirm: {
+                            label: 'Yes',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-secondary'
+                        }
+                    },
+                    callback: function (result) {
+                        console.log('This was logged in the callback: ' + result);
+                        if (result) {
+                            window.location.href = "/Events/ApproveEvent/" + evId;
+                        }
+                    }
+                });
+            });
+
+            $("#btn-deny").on("click", function () {
+                var evId = $(this).attr("ev-Id");
+                console.log(evId);
+
+                bootbox.prompt({
+                    title: 'Cancel event?',
+                    message: 'Add a comment for canceling the event<br><br>',
+                    inputType: 'textarea',
+                    centerVertical: true,
+                    buttons: {
+                        confirm: {
+                            label: 'Confirm',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'Close',
+                            className: 'btn-secondary'
+                        }
+                    },
+                    callback: function (result) {
+                        console.log(result);
+                        if (result != null) {
+                            window.location.href = "/Events/DenyEvent/?id=" + evId + "&comment=" + result;
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+}

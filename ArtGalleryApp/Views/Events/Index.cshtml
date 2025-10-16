@@ -1,0 +1,201 @@
+﻿@model IEnumerable<ArtGalleryApp.Models.Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+    .truncate-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <div>
+        <div>
+            <div>
+                <h1 id="events-type" class="d-inline-block display-2 text-success mb-4">Upcoming events</h1>
+                @if (User.IsInRole("Artist"))
+                {
+                    <a href="/Events/Create">
+                        <button class="btn btn-light ms-2 mb-4 p-2">
+                            <img src="~/Content/Images/plus.png" style="width: 12px;" />
+                            <span>Schedule new event</span>
+                        </button>
+                    </a>
+                }
+            </div>
+            <a>
+                <button id="btn-upcoming" class="btn btn-light ms-3 p-2" style="background-color: lightgray;">
+                    <img src="~/Content/Images/upcoming_event.png" style="width: 16px;" />
+                    <span>View upcoming events</span>
+                </button>
+            </a>
+            <a>
+                <button id="btn-previous" class="btn btn-light ms-3 p-2">
+                    <img src="~/Content/Images/previous_event.png" style="width: 18px;" />
+                    <span>View previous events</span>
+                </button>
+            </a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a>
+                    <button id="btn-approval" class="btn btn-light ms-3 p-2">
+                        <img src="~/Content/Images/approval_event.png" style="width: 17px;" />
+                        <span>View events for approval</span>
+                    </button>
+                </a>
+            }
+        </div>
+
+        <div id="upcoming">
+            @{
+                int c2 = 0;
+                foreach (var ev in Model)
+                {
+                    if (ev.Status.Equals("Approved") && (DateTime.Parse(ev.Date) > DateTime.Parse(ViewBag.date) || (DateTime.Parse(ev.Date) == DateTime.Parse(ViewBag.date) && @DateTime.Parse(ev.Time).TimeOfDay >= @DateTime.Now.TimeOfDay)))
+                    {
+                        c2 += 1;
+                        <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                            <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                                <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                                <div class="d-inline-block col-10 ms-3">
+                                    <h2 class="display-5 text-success">@ev.Name</h2>
+                                    <div class="mt-3 mb-3">
+                                        <img src="~/Content/Images/date.png" style="width:30px" />
+                                        <span>@ev.Date</span>
+                                        <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                        <span>@ev.Time</span>
+                                    </div>
+                                    <p class="truncate-3">@ev.Description</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                if (c2 == 0)
+                {
+                    <div class="text-center bg-light m-4 align-content-center" style="border-radius: 20px; height: 60vh;">
+                        <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+                        <h3 class="display-6">No events to show</h3>
+                    </div>
+                }
+            }
+        </div>
+
+        <div id="previous">
+            @{
+                int c3 = 0;
+                foreach (var ev in Model)
+                {
+                    if (ev.Status.Equals("Approved") && (DateTime.Parse(ev.Date) < DateTime.Parse(ViewBag.date) || (DateTime.Parse(ev.Date) == DateTime.Parse(ViewBag.date) && @DateTime.Parse(ev.Time).TimeOfDay < @DateTime.Now.TimeOfDay)))
+                    {
+                        c3 += 1;
+                        <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                            <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                                <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                                <div class="d-inline-block col-10 ms-3">
+                                    <h2 class="display-5 text-success">@ev.Name</h2>
+                                    <div class="mt-3 mb-3">
+                                        <img src="~/Content/Images/date.png" style="width:30px" />
+                                        <span>@ev.Date</span>
+                                        <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                        <span>@ev.Time</span>
+                                    </div>
+                                    <p class="truncate-3">@ev.Description</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                if (c3 == 0)
+                {
+                    <div class="text-center bg-light m-4 align-content-center" style="border-radius: 20px; height: 60vh;">
+                        <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+                        <h3 class="display-6">No events to show</h3>
+                    </div>
+                }
+            }
+        </div>
+
+        <div id="approval">
+            @{
+                int c1 = 0;
+                foreach (var ev in Model)
+                {
+                    if (ev.Status.Equals("Pending") && (DateTime.Parse(ev.Date) > DateTime.Parse(ViewBag.date) || (DateTime.Parse(ev.Date) == DateTime.Parse(ViewBag.date) && @DateTime.Parse(ev.Time).TimeOfDay > @DateTime.Now.TimeOfDay)))
+                    {
+                        c1 += 1;
+                        <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                            <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                                <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                                <div class="d-inline-block col-10 ms-3">
+                                    <h2 class="display-5 text-success">@ev.Name</h2>
+                                    <div class="mt-3 mb-3">
+                                        <img src="~/Content/Images/date.png" style="width:30px" />
+                                        <span>@ev.Date</span>
+                                        <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                        <span>@ev.Time</span>
+                                    </div>
+                                    <p class="truncate-3">@ev.Description</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                if (c1 == 0)
+                {
+                    <div class="text-center bg-light m-4 align-content-center" style="border-radius: 20px; height: 60vh;">
+                        <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+                        <h3 class="display-6">No events to show</h3>
+                    </div>
+                }
+            }
+        </div>
+        <span id="msg" class="visually-hidden" alertMessage="@TempData["alertMessage"]">@TempData["alertMessage"]</span>
+    </div>
+</body>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#previous").hide();
+            $("#approval").hide();
+
+            $("div.event").hover(function () {
+                $(this).css("background", "linear-gradient(#BBBBBB, lightgray)").animate({ margin: "24px 14px" });
+            }, function () {
+                $(this).css("background", "linear-gradient(lightgray, #EFEFEF)").animate({ margin: "20px 10px" });
+            });
+
+            $("#btn-approval").on("click", function () {
+                $(this).css("background-color", "lightgray");
+                $("#btn-previous, #btn-upcoming").css("background-color", "");
+                $("#events-type").text("Events for approval")
+                $("#previous, #upcoming").hide();
+                $("#approval").show();
+            });
+
+            $("#btn-previous").on("click", function () {
+                $(this).css("background-color", "lightgray");
+                $("#btn-approval, #btn-upcoming").css("background-color", "");
+                $("#events-type").text("Previous events")
+                $("#upcoming, #approval").hide();
+                $("#previous").show();
+            });
+
+            $("#btn-upcoming").on("click", function () {
+                $(this).css("background-color", "lightgray");
+                $("#btn-previous, #btn-approval").css("background-color", "");
+                $("#events-type").text("Upcoming events")
+                $("#previous, #approval").hide();
+                $("#upcoming").show();
+            });
+        })
+    </script>
+}

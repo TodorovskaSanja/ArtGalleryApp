@@ -1,0 +1,179 @@
+﻿@model IEnumerable<ArtGalleryApp.Models.Artist>
+
+@{
+    ViewBag.Title = "Artists";
+}
+
+<main>
+    <h1 class="display-2 text-success">Artists</h1>
+    <p class="text-secondary">Explore the creatives who pour their heart out to make these special art pieces.</p>
+
+    <h3 class="display-6 text-success">Popular artists</h3>
+    <div id="carouselPopular" class="carousel slide d-flex align-items-baseline" data-bs-interval="false">
+        <div class="carousel-inner">
+            @{
+                var allArts = Model.Where(m => m.NumFollowers >= 5).ToList();
+                int chunkSize = 4; // number of cards per slide
+                int total = allArts.Count;
+                int slideIndex = 0;
+
+                for (int i = 0; i < total; i += chunkSize)
+                {
+                    var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                }
+            }
+
+            @for (int i = 0; i < allArts.Count; i += chunkSize)
+            {
+                var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <div class="cards-wrapper">
+                        @foreach (var art in chunk)
+                        {
+                            <div class="card d-inline-block mt-3 me-2" style="width: 310px; height: 420px;">
+                                <a class="text-dark" href="/Artists/Details/@art.Id">
+                                    <div class="text-center pt-3 pb-3"><img src="@art.ImageURL" style="width: 280px; height: 250px; object-fit: cover;" /></div>
+                                </a>
+                                <a class="text-dark" href="/Artists/Details/@art.Id">
+                                    <div class="d-inline-block col-9 text-start ps-3">
+                                        <h3 class="text-truncate" title="@art.Name @art.Surname">@art.Name @art.Surname</h3>
+                                        <p>@art.Artworks.Count() artworks</p>
+                                    </div>
+                                </a>
+                                @if (User.IsInRole("User"))
+                                {
+                                    if (((List<int>)Session["arts"]).Contains(art.Id))
+                                    {
+                                        <button art-id="@art.Id" class="following position-absolute btn btn-secondary col-4" style="bottom: 10px; right: 10px;">Following</button>
+                                    }
+                                    else
+                                    {
+                                        <button art-id="@art.Id" class="follow position-absolute btn btn-success col-3" style="bottom: 10px; right: 10px;">Follow</button>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (allArts.Count > 4)
+        {
+            <a class="carousel-control-prev text-dark" href="#carouselPopular" role="button" data-bs-slide="prev" style="left:-100px; width: 100px;">
+                <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+            </a>
+            <a class="carousel-control-next text-dark" href="#carouselPopular" role="button" data-bs-slide="next" style="right:-100px; width: 100px;">
+                <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+            </a>
+        }
+    </div>
+    @if (Model.Where(m => m.NumFollowers >= 5).Count() == 0)
+    {
+        <div class="text-center bg-light m-4 align-content-center" style="border-radius: 20px;">
+            <img src="~/Content/Images/empty3.png" style="width: 150px;" />
+            <h3 class="display-6">No artists to show</h3>
+        </div>
+    }
+
+    <h3 class="display-6 text-success mt-3">Less known artists</h3>
+    <div id="carouselLessKnown" class="carousel slide d-flex align-items-baseline" data-bs-interval="false">
+        <div class="carousel-inner">
+            @{
+                allArts = Model.Where(m => m.NumFollowers < 5).ToList();
+                chunkSize = 4; // number of cards per slide
+                total = allArts.Count;
+                slideIndex = 0;
+
+                for (int i = 0; i < total; i += chunkSize)
+                {
+                    var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                }
+            }
+
+            @for (int i = 0; i < allArts.Count; i += chunkSize)
+            {
+                var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <div class="cards-wrapper">
+                        @foreach (var art in chunk)
+                        {
+                            <div class="card d-inline-block mt-3 me-2" style="width: 310px; height: 420px;">
+                                <a class="text-dark" href="/Artists/Details/@art.Id">
+                                    <div class="text-center pt-3 pb-3"><img src="@art.ImageURL" style="width: 280px; height: 250px; object-fit: cover;" /></div>
+                                </a>
+                                <a class="text-dark" href="/Artists/Details/@art.Id">
+                                    <div class="d-inline-block col-9 text-start ps-3">
+                                        <h3 class="text-truncate" title="@art.Name @art.Surname">@art.Name @art.Surname</h3>
+                                        <p>@art.Artworks.Count() artworks</p>
+                                    </div>
+                                </a>
+
+                                @if (User.IsInRole("User"))
+                                {
+                                    if (((List<int>)Session["arts"]).Contains(art.Id))
+                                    {
+                                        <button art-id="@art.Id" class="following position-absolute btn btn-secondary col-4" style="bottom: 10px; right: 10px;">Following</button>
+                                    }
+                                    else
+                                    {
+                                        <button art-id="@art.Id" class="follow position-absolute btn btn-success col-3" style="bottom: 10px; right: 10px;">Follow</button>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (allArts.Count > 4)
+        {
+            <a class="carousel-control-prev text-dark" href="#carouselLessKnown" role="button" data-bs-slide="prev" style="left:-100px; width: 100px;">
+                <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+            </a>
+            <a class="carousel-control-next text-dark" href="#carouselLessKnown" role="button" data-bs-slide="next" style="right:-100px; width: 100px;">
+                <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+            </a>
+        }
+    </div>
+    @if (Model.Where(m => m.NumFollowers < 5).Count() == 0)
+    {
+        <div class="text-center bg-light m-4 align-content-center" style="border-radius: 20px;">
+            <img src="~/Content/Images/empty1.png" style="width: 150px;" />
+            <h3 class="display-6">No artists to show</h3>
+        </div>
+    }
+</main>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".card").hover(function () {
+                $(this).css("background-color", "#ECECEC");
+                $(this).css("box-shadow", "5px 5px 10px lightgray");
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("box-shadow", "0px 0px 0px lightgray");
+            })
+
+            $('.follow').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artists/FollowArtist/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully followed artist with id " + id);
+                            button.removeClass("follow").removeClass("btn-success").removeClass("col-3")
+                            button.addClass("following").addClass("btn-secondary").addClass("col-4");
+                            button.text("Following");
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+        })
+    </script>
+}

@@ -1,0 +1,25 @@
+﻿@model ArtGalleryApp.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<body>
+    <h2 class="display-4">Delete order</h2>
+    <div class="text-center" style="margin-top: 70px; margin-bottom: 120px;">
+        <div class="d-inline-block bg-light border border-3 shadow col-6 align-content-center" style="min-height: 50vh;">
+            <h3 class="fw-bold">Deleting is permanent</h3>
+            <p class="fs-5 mt-5 mb-5">Once you delete your order you can't get its data back.<br />Are you sure you want to delete this order?</p>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete order" class="btn btn-danger me-2 shadow" />
+                    <a href="/Orders/Details/@Model.Id" class="btn btn-secondary shadow">Go back to order</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>

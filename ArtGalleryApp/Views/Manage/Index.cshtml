@@ -1,0 +1,70 @@
+﻿@model ArtGalleryApp.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Manage";
+}
+
+<style>
+    .truncate-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+</style>
+
+
+<div>
+    <div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="text-center">
+                <div class="bg-light p-4 m-3" style="border-radius: 20px;">
+                    <img src="~/Content/Images/profile.png" style="width: 150px;" />
+                    <h3 class="d-inline-block ms-4">@User.Identity.GetUserName()</h3>
+                </div>
+            </div>
+            <h2 class="display-6 m-3 text-success">Events for approval</h2>
+            {
+                int c1 = 0;
+                foreach (var ev in ViewBag.events)
+                {
+                    if ((DateTime.Parse(ev.Date) > DateTime.Parse(ViewBag.date) || (DateTime.Parse(ev.Date) == DateTime.Parse(ViewBag.date) && @DateTime.Parse(ev.Time).TimeOfDay > @DateTime.Now.TimeOfDay)))
+                    {
+                        c1 += 1;
+                        <a href="/Events/Details/@ev.Id" class="text-decoration-none text-dark">
+                            <div event-id=@ev.Id class="event p-4 d-flex align-items-start" style="border-radius: 10px; background: linear-gradient(lightgray, #EFEFEF); margin: 20px 10px; ">
+                                <img src="@ev.ImageURL" class="shadow" style="width: 150px; height: 220px; object-fit: cover;" />
+                                <div class="d-inline-block col-10 ms-3">
+                                    <h2 class="display-5 text-success">@ev.Name</h2>
+                                    <div class="mt-3 mb-3">
+                                        <img src="~/Content/Images/date.png" style="width:30px" />
+                                        <span>@ev.Date</span>
+                                        <img src="~/Content/Images/time.png" class="ms-2" style="width:28px;" />
+                                        <span>@ev.Time</span>
+                                    </div>
+                                    <p class="truncate-3">@ev.Description</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+                if (c1 == 0)
+                {
+                    <div class="text-center bg-light p-4 m-4" style="border-radius: 20px;">
+                        <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+                        <h3 class="display-6">No events to show</h3>
+                    </div>
+                }
+            }
+        }
+        else
+        {
+            <h2 class="display-2 text-success">Profile</h2>
+            <div class="m-5 bg-light text-center align-content-center h5" style="height: 60vh;">
+                <img src="~/Content/Images/logout.png" style="max-width: 150px;" />
+                <p>Please <a href="javascript:document.getElementById('logoutForm').submit()" class="text-success">log out</a> and log in again to view your profile page.</p>
+            </div>
+        }
+    </div>
+</div>

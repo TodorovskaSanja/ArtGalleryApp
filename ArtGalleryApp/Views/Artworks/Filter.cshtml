@@ -1,0 +1,272 @@
+﻿@model IEnumerable<ArtGalleryApp.Models.Artwork>
+@{
+    ViewBag.Title = "Filter";
+}
+
+<style>
+    .category-radio, .status-radio {
+        display: none;
+    }
+
+    .btn-lightgray {
+        background-color: lightgray;
+    }
+
+    .btn-lightgray:hover {
+        background-color: #BEBEBE;
+    }
+
+    #carouselArts .carousel-control-prev,
+    #carouselArts .carousel-control-next {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        width: auto;
+        margin: 10px;
+    }
+
+    #carouselArts .carousel-controls-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+</style>
+
+
+<h2 id="top" class="display-2 text-success">Browse artworks</h2>
+<div>
+    <input id="search-string" class="d-inline-block form-control" type="text" placeholder="Search by name or artist..." name="search" value="@ViewBag.searchStr" />
+    <button id="btn-search" class="btn btn-secondary ms-1">Search</button>
+</div>
+
+<div id="categoryContainer" class="mt-3" search-cat="@ViewBag.searchCategory">
+    <span class="d-inline-block text-secondary fs-5 col-1">Category:</span>
+    <label class="category-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">All<input class="category-radio" type="radio" name="categ" id="all" value="All" /></label>
+    <label class="category-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Paintings<input class="category-radio" type="radio" name="categ" id="paintings" value="Painting" /></label>
+    <label class="category-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Drawings<input class="category-radio" type="radio" name="categ" id="drawings" value="Drawing" /></label>
+    <label class="category-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Photography<input class="category-radio" type="radio" name="categ" id="photography" value="Photography" /></label>
+    <label class="category-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Sculptures<input class="category-radio" type="radio" name="categ" id="sculptures" value="Sculpture" /></label>
+    <label class="category-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Prints<input class="category-radio" type="radio" name="categ" id="prints" value="Print" /></label>
+</div>
+
+<div id="statusContainer" class="mt-3" search-stat="@ViewBag.searchStatus">
+    <span class="d-inline-block text-secondary fs-5 col-1">Status:</span>
+    <label class="status-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">All<input class="status-radio" type="radio" name="stat" id="all" value="All" /></label>
+    <label class="status-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Not for sale<input class="status-radio" type="radio" name="stat" id="not-for-sale" value="Not-for-sale" /></label>
+    <label class="status-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">For sale<input class="status-radio" type="radio" name="stat" id="for-sale" value="For-sale" /></label>
+    <label class="status-label text-center btn btn-light border me-2 ps-4 pe-4 pt-1 pb-1 fs-6">Purchased<input class="status-radio" type="radio" name="stat" id="purchased" value="Purchased" /></label>
+</div>
+
+@if (Model.Count() == 0)
+{
+    <div class="text-center bg-light m-4 align-content-center" style="border-radius: 20px; height: 50vh;">
+        <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+        <h3 class="display-6">No artworks found</h3>
+    </div>
+}
+else
+{
+    <h4 class="mt-3">@Model.Count() results</h4>
+    <div id="carouselArts" class="carousel slide" data-bs-interval="false">
+        <div class="carousel-inner">
+
+            @{
+                var allArts = Model.ToList();
+                int chunkSize = 12; // number of cards per slide
+                int total = allArts.Count;
+                int slideIndex = 0;
+
+                for (int i = 0; i < total; i += chunkSize)
+                {
+                    var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                }
+            }
+
+            @if (allArts.Count > 12)
+            {
+                <div class="carousel-controls-wrapper justify-content-center">
+                    <a class="carousel-control-prev text-dark" href="#carouselArts" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px; height: 25px; width: 25px;"></span>
+                        <span class="sr-only ms-2">Previous page</span>
+                    </a>
+                    <a class="carousel-control-next text-dark" href="#carouselArts" role="button" data-bs-slide="next">
+                        <span class="sr-only me-2">Next page</span>
+                        <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px; height: 25px; width: 25px;"></span>
+                    </a>
+                </div>
+            }
+
+            @for (int i = 0; i < allArts.Count; i += chunkSize)
+            {
+                var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <div class="cards-wrapper">
+                        @foreach (var art in chunk)
+                        {
+                            <div class="card d-inline-block mt-3 me-2 art-card" style="width: 310px; height: 440px;">
+                                <a class="text-dark" href="/Artworks/Details/@art.Id">
+                                    <div class="text-center pt-3 pb-3">
+                                        <img src="@art.ImageURL" style="width: 280px; height: 250px; object-fit: cover;" />
+                                    </div>
+                                </a>
+                                <a class="text-decoration-none text-dark" href="/Artworks/Details/@art.Id">
+                                    <div class="d-inline-block col-9 text-start ps-3">
+                                        <h3 title="@art.Name" class="text-truncate" style="line-height: 40px;">@art.Name</h3>
+                                        <h6>
+                                            @if (art.Artist != null)
+                                            {
+                                                <a class="text-decoration-none text-success h6" href="/Artists/Details/@art.Artist.Id">
+                                                    @art.ArtistName
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-success h6">@art.ArtistName</p>
+                                            }
+                                        </h6>
+                                        <h6 class="text-secondary" style="font-size: 14px;">@art.Category</h6>
+                                        @if (art.Status == "For sale")
+                                        {
+                                            <p>€@art.Price</p>
+                                        }
+                                        else
+                                        {
+                                            <p>@art.Status</p>
+                                        }
+                                    </div>
+                                </a>
+
+                                @if (User.IsInRole("User"))
+                                {
+                                    if (((List<int>)Session["fav-arts"]).Contains(art.Id))
+                                    {
+                                        <img art-id="@art.Id" class="unfavorite position-absolute" style="bottom: 15px; right: 15px; height: 30px; width: 30px;" src="~/Content/Images/red_heart.png" />
+                                    }
+                                    else
+                                    {
+                                        <img art-id="@art.Id" class="favorite position-absolute" style="bottom: 15px; right: 15px; height: 30px; width: 30px;" src="~/Content/Images/white_heart.png" />
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (allArts.Count > 12)
+        {
+            <div class="carousel-controls-wrapper">
+                <a class="carousel-control-prev text-dark" href="#carouselArts" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px; height: 25px; width: 25px;"></span>
+                    <span class="sr-only ms-2">Previous page</span>
+                </a>
+                <a class="carousel-control-next text-dark" href="#carouselArts" role="button" data-bs-slide="next">
+                    <span class="sr-only me-2">Next page</span>
+                    <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px; height: 25px; width: 25px;"></span>
+                </a>
+            </div>
+        }
+    </div>
+}
+
+<a href="/Artworks/" class="d-inline-block text-decoration-none text-secondary mt-3">
+    <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+    <span style="font-size: 20px;">Back to artworks</span>
+</a>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var currentCat = $("#categoryContainer").attr("search-cat");
+            $(".category-radio").each(function () {
+                if ($(this).val() == currentCat) {
+                    $(this).parent().removeClass("btn-light").addClass("btn-lightgray");
+                }
+            })
+
+            var currentStat = $("#statusContainer").attr("search-stat");
+            $(".status-radio").each(function () {
+                if ($(this).val() == currentStat) {
+                    $(this).parent().removeClass("btn-light").addClass("btn-lightgray");
+                }
+            })
+
+            $("#search-string").keyup(function (event) {
+                if (event.keyCode === 13) {
+                    $("#btn-search").click();
+                }
+            });
+
+            $("#btn-search").on("click", function () {
+                var str = $("#search-string").val();
+                console.log(str);
+                window.location.replace("/Artworks/Filter?category=" + currentCat + "&status=" + currentStat + "&searchString=" + str);
+            });
+
+            $(".category-label").on("click", function () {
+                currentCat = $(this).children().val();
+                var str = $("#search-string").val();
+                console.log(currentCat);
+                window.location.replace("/Artworks/Filter?category=" + currentCat + "&status=" + currentStat + "&searchString=" + str);
+            });
+
+            $(".status-label").on("click", function () {
+                currentStat = $(this).children().val();
+                var str = $("#search-string").val();
+                console.log(currentStat);
+                window.location.replace("/Artworks/Filter?category=" + currentCat + "&status=" + currentStat + "&searchString=" + str);
+            });
+
+            $(".card").hover(function () {
+                $(this).css("background-color", "#ECECEC");
+                $(this).css("box-shadow", "5px 5px 10px lightgray");
+            }, function () {
+                $(this).css("background-color", "white");
+                $(this).css("box-shadow", "0px 0px 0px lightgray");
+            })
+
+            $(".favorite, .unfavorite").hover(function () {
+                $(this).css("cursor", "pointer");
+            }, function () {
+                $(this).css("cursor", "auto");
+            })
+
+            $('.favorite').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artworks/Favorite/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully added artwork with id " + id + " to favorites");
+                            button.removeClass("favorite");
+                            button.addClass("unfavorite");
+                            button.attr("src", "https://pics.clipartpng.com/Heart_Shape_PNG_Clipart-3166.png")
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+
+            $('.unfavorite').on('click', function () {
+                var button = $(this);
+                var id = $(this).attr("art-id");
+                if (id) {
+                    $.ajax({
+                        url: "/Artworks/Unfavorite/" + id,
+                        method: "GET",
+                        success: function () {
+                            console.log("Successfully removed artwork with id " + id + " from favorites");
+                            button.removeClass("unfavorite");
+                            button.addClass("favorite");
+                            button.attr("src", "https://openclipart.org/image/2000px/234835")
+                        },
+                        error: function (err) { console.log(err); }
+                    });
+                }
+            });
+        })
+    </script>
+}

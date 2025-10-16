@@ -1,0 +1,261 @@
+﻿@model ArtGalleryApp.Models.Order
+@using ArtGalleryApp.Models;
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<body>
+    <h2 class="display-3 text-success">Checkout</h2>
+    <div class="d-flex justify-content-between align-items-start align-content-start">
+        <div class="col-7">
+            @using (Html.BeginForm("Checkout", "Users", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div id="info-form">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="d-flex justify-content-between w-100">
+                        <div class="form-group d-inline-block w-100 me-2">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10 w-100">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-name" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group d-inline-block w-100 ms-2">
+                            @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10 w-100">
+                                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-surname" } })
+                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group d-inline-block w-100">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 w-100">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-email" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group d-inline-block w-100">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10 w-100">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-address" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between w-100">
+                        <div class="form-group d-inline-block w-100 me-2">
+                            @Html.LabelFor(model => model.PhoneNumber, "Phone number", htmlAttributes: new { @class = "control-label col-md-2 w-100" })
+                            <div class="col-md-10 w-100">
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-phone-number" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group d-inline-block w-100 ms-2">
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10 w-100">
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-city" } })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between w-100">
+                        <div class="form-group d-inline-block w-100 me-2">
+                            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10 w-100">
+                                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @style = "min-width: 100%;", @id = "model-country" } })
+                                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group d-inline-block w-100 ms-2">
+                            @Html.Label("Postal code")
+                            @Html.TextBox("postal-code", null, new { @class = "form-control", @style = "min-width: 100%;", @id = "model-postal-code" })
+                        </div>
+
+                        @Html.HiddenFor(model => model.UserId)
+                        @Html.HiddenFor(model => model.ShippingPrice)
+                        @Html.HiddenFor(model => model.Total)
+                    </div>
+
+                    <div class="mt-4">
+                        <table id="shipping-table" class="table table-borderless">
+                            <thead>
+                                <tr class="bg-light">
+                                    <th>
+                                        Shipping method
+                                    </th>
+                                    <th>
+                                        Estimated arrival
+                                    </th>
+                                    <th>
+                                        Shipping cost
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border border-success border-opacity-50">
+                                    <td>
+                                        @Html.RadioButtonFor(model => model.ShippingMethod, "Gallery", new { @checked = "true", @style = "filter: hue-rotate(260deg);", @id = "shipping-gallery" })
+                                        @Html.LabelFor(model => model.ShippingMethod, "Pick up at the gallery", new { @for = "shipping-gallery" })
+                                    </td>
+                                    <td>/</td>
+                                    <td>€0</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor(model => model.ShippingMethod, "Standard", new { @style = "filter: hue-rotate(260deg);", @id = "shipping-standard" })
+                                        @Html.LabelFor(model => model.ShippingMethod, "Standard shipping", new { @for = "shipping-standard" })
+                                    </td>
+                                    <td>5-14 business days</td>
+                                    <td>€10</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.RadioButtonFor(model => model.ShippingMethod, "Express", new { @style = "filter: hue-rotate(260deg);", @id = "shipping-express" })
+                                        @Html.LabelFor(model => model.ShippingMethod, "Express shipping", new { @for = "shipping-express" })
+                                    </td>
+                                    <td>2-5 business days</td>
+                                    <td>€25</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <span id="btn-payment" class="btn btn-secondary">Proceed to payment</span>
+                </div>
+
+                <div id="payment-form" class="bg-light p-5 m-4">
+                    <div class="form-group d-inline-block w-100 mt-2">
+                        @Html.Label("Cardholder name")
+                        @Html.TextBox("cardholder-name", null, new { @class = "form-control", @style = "min-width: 100%;", @placeholder = "Name Surname", @id = "model-card-name" })
+                    </div>
+
+                    <div class="form-group d-inline-block w-100 mt-2">
+                        @Html.Label("Card number")
+                        @Html.TextBox("card-number", null, new { @class = "form-control", @style = "min-width: 100%;", @placeholder = "**** **** **** ****", @id = "model-card-number" })
+                    </div>
+
+                    <div class="d-flex justify-content-between w-100 mt-2">
+                        <div class="form-group d-inline-block w-100 me-2">
+                            @Html.Label("Expiry date", new { @class = "w-100" })
+                            @Html.TextBox("expiry-date", null, new { @class = "form-control w-100", @style = "min-width: 100%;", @placeholder = "12/29", @id = "model-card-date" })
+                        </div>
+                        <div class="form-group d-inline-block w-100 ms-2">
+                            @Html.Label("CVV2", new { @class = "w-100" })
+                            @Html.TextBox("cvv2", null, new { @class = "form-control w-100", @style = "min-width: 100%;", @placeholder = "***", @id = "model-card-cvv" })
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <span id="btn-info" class="btn btn-secondary">Back</span>
+                        <span id="btn-placeholder" class="btn btn-success">Confirm purchase</span>
+                        <button id="btn-confirm" type="submit" class="btn btn-success visually-hidden">Confirm purchase</button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div id="summary" class="col-4 bg-light ps-5 pe-5 pt-4 pb-4">
+            <div>
+                <h3 class="d-inline-block">Order summary</h3>
+                <a href="/Users/Cart/@ViewBag.usr.Id" class="text-secondary ms-2">Back to cart</a>
+            </div>
+            <div class="mt-4">
+                @foreach (var item in ViewBag.usr.Cart)
+                {
+                    <div class="d-flex mt-3 mb-3">
+                        <img src="@item.ImageURL" style="width: 120px; height: 80px; object-fit: cover;" />
+                        <div class="d-inline-block m-2">
+                            <h5>@item.Name</h5>
+                            <h6 class="text-success">€@item.Price</h6>
+                        </div>
+                    </div>
+                }
+                <table class="table">
+                    <tr>
+                        <td>Subtotal</td>
+                        <td class="text-end">€@ViewBag.subtotal</td>
+                    </tr>
+                    <tr class="text-secondary">
+                        <td>Delivery</td>
+                        <td id="shipping" class="text-end">---</td>
+                    </tr>
+                    <tr class="fw-bold">
+                        <td>Total</td>
+                        <td id="total" subtotal-price="@ViewBag.subtotal" class="text-end">€@ViewBag.subtotal</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#payment-form").hide();
+            var subtotal = parseInt($("#total").attr("subtotal-price"));
+
+            $("#btn-payment").on("click", function () {
+                if (/[^a-zA-Z\s]/.test($("#model-name").val()) ||
+                    /[^a-zA-Z\s]/.test($("#model-surname").val()) ||
+                    /[^a-zA-Z0-9-\.\/\s]/.test($("#model-address").val()) ||
+                    /[^a-zA-Z\s]/.test($("#model-city").val()) ||
+                    /[^a-zA-Z\s]/.test($("#model-country").val()) ||
+                    /[^0-9/-\s]/.test($("#model-phone-number").val()) ||
+                    /[^0-9/\s]/.test($("#model-postal-code").val()) ||
+                    /[^a-zA-Z0-9_@@\.]/.test($("#model-email").val()) ||
+                    !$("#model-name").val() || !$("#model-surname").val() ||
+                    !$("#model-address").val() || !$("#model-city").val() ||
+                    !$("#model-country").val() || !$("#model-phone-number").val() ||
+                    !$("#model-postal-code").val() || !$("#model-email").val()) {
+                    alert("Invalid input. Please fix your input before proceeding.");
+                    return;
+                }
+
+                $("#info-form").hide();
+                $("#payment-form").show();
+            });
+
+            $("#btn-info").on("click", function () {
+                $("#payment-form").hide();
+                $("#info-form").show();
+            });
+
+            $("#shipping-table tbody tr").on("click", function () {
+                $(this).children().first().children().first().prop("checked", "true");
+                var row = $(this);
+                row.addClass("border border-success border-opacity-50").siblings().removeClass("border");
+                var cost = parseInt(row.children().last().text().slice(1));
+                console.log(cost);
+                var total = subtotal + cost;
+                if (cost)
+                    $("#shipping").text("€" + cost);
+                else
+                    $("#shipping").text("---");
+                $("#total").text("€" + total);
+
+                $("#ShippingPrice").val(cost);
+                $("#Total").val(total);
+            });
+
+            $("#btn-placeholder").on("click", function () {
+                if (/[^a-zA-Z\s]/.test($("#model-card-name").val()) ||
+                    /[^0-9\s]/.test($("#model-card-number").val()) ||
+                    /[^0-9/]/.test($("#model-card-date").val()) ||
+                    /[^0-9]/.test($("#model-card-cvv").val()) ||
+                    $("#model-card-cvv").val().length != 3 ||
+                    !$("#model-card-name").val() || !$("#model-card-number").val() ||
+                    !$("#model-card-date").val()) {
+                    alert("Invalid card info");
+                    return;
+                }
+                $("#btn-confirm").click();
+            });
+        })
+    </script>
+}

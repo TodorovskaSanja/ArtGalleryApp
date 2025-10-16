@@ -1,0 +1,256 @@
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\ArtGalleryApp.dll.config
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\ArtGalleryApp.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\ArtGalleryApp.pdb
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csc.exe
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csc.exe.config
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csc.rsp
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csi.exe
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csi.exe.config
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csi.rsp
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.Managed.Core.targets
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.AppContext.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Collections.Immutable.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Console.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Globalization.Calendars.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.Compression.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.FileSystem.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Net.Http.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Net.Sockets.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Reflection.Metadata.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.ValueTuple.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.XmlDocument.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.XPath.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\vbc.exe
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\vbc.exe.config
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\vbc.rsp
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\VBCSCompiler.exe
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\roslyn\VBCSCompiler.exe.config
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Antlr3.Runtime.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.SqlServer.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Core.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Cookies.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Facebook.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Google.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.OAuth.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Twitter.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Web.Infrastructure.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Newtonsoft.Json.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Owin.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Helpers.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Mvc.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Optimization.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Razor.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Deployment.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Razor.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\WebGrease.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Helpers.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Mvc.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Optimization.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Razor.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Deployment.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Razor.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Newtonsoft.Json.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Antlr3.Runtime.pdb
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.SqlServer.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Core.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Facebook.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Cookies.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Google.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Twitter.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.OAuth.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.csproj.AssemblyReference.cache
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.csproj.CoreCompileInputs.cache
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalle.56B99015.Up2Date
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.pdb
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.initial.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.csproj.GenerateResource.cache
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingUserRelations.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Stripe.net.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Threading.Tasks.Extensions.dll
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\Stripe.net.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\bin\System.Threading.Tasks.Extensions.xml
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.addedOrderModel.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingModelRelations.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingRequirements.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingOrderUserRelationship.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingTicketUserRelationship.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.addedOrderArtworks.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.addingArtistName.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingArtistName.resources
+D:\it proekt\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.updatingArtistREquirements.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\ArtGalleryApp.dll.config
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\ArtGalleryApp.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\ArtGalleryApp.pdb
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csc.exe
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csc.exe.config
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csc.rsp
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csi.exe
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csi.exe.config
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\csi.rsp
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.AppContext.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Collections.Immutable.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Console.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Globalization.Calendars.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.Compression.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.FileSystem.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Net.Http.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Net.Sockets.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Reflection.Metadata.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.ValueTuple.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.XPath.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\vbc.exe
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\vbc.exe.config
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\vbc.rsp
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\VBCSCompiler.exe
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\roslyn\VBCSCompiler.exe.config
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Antlr3.Runtime.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.SqlServer.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Google.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Web.Infrastructure.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Newtonsoft.Json.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Owin.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Stripe.net.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Threading.Tasks.Extensions.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Helpers.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Mvc.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Optimization.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Razor.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Deployment.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Razor.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\WebGrease.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\EntityFramework.SqlServer.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Stripe.net.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Threading.Tasks.Extensions.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Helpers.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Mvc.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Optimization.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.Razor.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Deployment.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\System.Web.WebPages.Razor.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Newtonsoft.Json.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Antlr3.Runtime.pdb
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Google.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.csproj.AssemblyReference.cache
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.initial.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingUserRelations.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.addedOrderModel.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingModelRelations.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingRequirements.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingOrderUserRelationship.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingTicketUserRelationship.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.addedOrderArtworks.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.addingArtistName.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.fixingArtistName.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.Migrations.updatingArtistREquirements.resources
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.csproj.GenerateResource.cache
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.csproj.CoreCompileInputs.cache
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalle.56B99015.Up2Date
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.dll
+D:\Sanja\Faks\IV семестар\Интернет технологии\Проект\ArtGalleryApp\ArtGalleryApp\obj\Debug\ArtGalleryApp.pdb

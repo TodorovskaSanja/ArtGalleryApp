@@ -1,0 +1,204 @@
+﻿@model ArtGalleryApp.Models.Artwork
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<body>
+    <div class="d-flex align-items-center">
+        <div class="d-inline-block col-7 m-4 text-center align-content-center bg-light" style="min-height: 500px;">
+            <img src="@Model.ImageURL" style="max-height: 550px; max-width: 750px;" />
+        </div>
+        <div class="d-inline-block">
+            <h5 class="text-secondary">@Model.Category</h5>
+            <h2 class="display-3">@Model.Name</h2>
+            @if (Model.Artist != null)
+            {
+                <a class="d-inline-block text-decoration-none text-success p-0" href="/Artists/Details/@Model.Artist.Id"><span class="h3 fw-light">@Model.ArtistName</span></a>
+                <span class="d-inline-block p-0 h4 fw-light text-secondary"> · @Model.Year</span>
+            }
+            else
+            {
+                <p class="d-inline-block text-success p-0 h3 fw-light">@Model.ArtistName</p>
+                <span class="d-inline-block p-0 h4 fw-light text-secondary"> · @Model.Year</span>
+            }
+
+            @if (Model.Status.Equals("For sale"))
+            {
+                <h5 class="mt-3">€@Model.Price</h5>
+            }
+            else if (Model.Status.Equals("Purchased"))
+            {
+                <h5 class="mt-3">Sold</h5>
+            }
+
+            @if (User.IsInRole("User"))
+            {
+                <div class="mt-3">
+                    @if (Model.Status.Equals("For sale"))
+                    {
+                        if (((List<int>)ViewBag.cart).Contains(Model.Id))
+                        {
+                            <a href="/Artworks/RemoveFromCart/@Model.Id" class="text-decoration-none text-dark"><button class="btn btn-danger p-2 me-1" style="border-radius: 25px; font-size: 22px; width: 230px;"><span class="h5">Remove from cart</span></button></a>
+                        }
+                        else
+                        {
+                            <a href="/Artworks/AddToCart/@Model.Id" class="text-decoration-none text-dark"><button class="btn btn-success p-2 me-1" style="border-radius: 25px; font-size: 22px; width: 230px;"><span class="h5">Acquire this artwork</span></button></a>
+                        }
+                    }
+
+                    @if (((List<int>)ViewBag.favs).Contains(Model.Id))
+                    {
+                        <a href="/Artworks/Unfavorite/@Model.Id" class="text-decoration-none text-dark"><button class="btn btn-outline-danger p-2" style="border-radius: 25px; font-size: 22px; width: 245px;"><span class="h5">Remove from favorites </span><img style="height: 20px; width: 20px;" src="~/Content/Images/white_heart.png" /></button></a>
+                    }
+                    else
+                    {
+                        <a href="/Artworks/Favorite/@Model.Id" class="text-decoration-none text-dark"><button class="btn btn-outline-success p-2" style="border-radius: 25px; font-size: 22px; width: 245px;"><span class="h5">Add to favorites </span><img style="height: 20px; width: 20px;" src="~/Content/Images/red_heart.png" /></button></a>
+                    }
+                </div>
+            }
+            else if (Model.Artist != null & User.IsInRole("Artist") && User.Identity.GetUserName() == Model.Artist.Email && Model.Status == "Not for sale")
+            {
+                <br />
+                <span id="btn-sell" class="btn btn-success mt-3" style="border-radius: 25px; font-size: 22px; width: 240px;">Sell artwork</span>
+            }
+
+            @if (Model.Artist != null && (User.IsInRole("Artist") && User.Identity.GetUserName() == Model.Artist.Email && Model.Status != "Purchased"))
+            {
+                <a href="/Artworks/Delete/@Model.Id" class="btn btn-danger p-2 me-1 mt-3" style="border-radius: 25px; font-size: 22px; width: 240px;">Remove this artwork</a>
+            }
+        </div>
+    </div>
+    <div class="mt-1">
+        <h3 class="display-5 text-success">About this artwork</h3>
+        <p>@Model.Description</p>
+        @if (Model.Artist != null && User.IsInRole("Artist") && User.Identity.GetUserName() == Model.Artist.Email)
+        {
+        <a href="/Artworks/Edit/@Model.Id" class="text-success">Edit details</a>
+        }
+    </div>
+
+    @if (Model.Artist != null) {
+        <div class="mt-3">
+            <h4 class="display-6 text-success">More from the artist</h4>
+            @if (Model.Artist.Artworks.Count() == 1)
+            {
+                <div class="text-center bg-light p-4 m-4" style="border-radius: 20px;">
+                    <img src="~/Content/Images/empty2.png" style="width: 200px;" />
+                    <h3 class="display-6">No more artworks to show</h3>
+                </div>
+            }
+            else
+            {
+                <div id="carouselArts" class="carousel slide mb-3" data-bs-interval="false">
+                    <div class="carousel-inner">
+
+                        @{
+                            var moreArts = Model.Artist.Artworks.ToList();
+                            moreArts.Remove(Model);
+                            int chunkSize = 4; // number of cards per slide
+                            int total = moreArts.Count;
+                            int slideIndex = 0;
+
+                            for (int i = 0; i < total; i += chunkSize)
+                            {
+                                var chunk = moreArts.Skip(i).Take(chunkSize).ToList();
+                            }
+                        }
+
+                        @for (int i = 0; i < moreArts.Count; i += chunkSize)
+                        {
+                            var chunk = moreArts.Skip(i).Take(chunkSize).ToList();
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="cards-wrapper">
+                                    @foreach (var art in chunk)
+                                    {
+                                        <div class="card d-inline-block mt-3 me-2" style="width: 310px; height: 440px;">
+                                            <a class="text-dark" href="/Artworks/Details/@art.Id">
+                                                <div class="text-center pt-3 pb-3">
+                                                    <img src="@art.ImageURL" style="width: 280px; height: 250px; object-fit: cover;" />
+                                                </div>
+                                            </a>
+                                            <a class="text-decoration-none text-dark" href="/Artworks/Details/@art.Id">
+                                                <div class="d-inline-block col-9 text-start ps-3">
+                                                    <h3 title="@art.Name" class="text-truncate" style="line-height: 40px;">@art.Name</h3>
+                                                    <h6>
+                                                        <a class="text-decoration-none text-success h6" href="/Artists/Details/@art.Artist.Id">
+                                                            @art.ArtistName
+                                                        </a>
+                                                    </h6>
+                                                    <h6 class="text-secondary" style="font-size: 14px;">@art.Category</h6>
+                                                    @if (art.Status == "For sale")
+                                                    {
+                                                        <p>€@art.Price</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p>@art.Status</p>
+                                                    }
+                                                </div>
+                                            </a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    @if (moreArts.Count > 4)
+                    {
+                        <a class="carousel-control-prev position-absolute text-dark" href="#carouselArts" role="button" data-bs-slide="prev" style="left: -100px; width: 100px;">
+                            <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                        </a>
+                        <a class="carousel-control-next position-absolute text-dark" href="#carouselArts" role="button" data-bs-slide="next" style="right: -100px; width: 100px;">
+                            <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                        </a>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    <p>
+        <a href="/Artworks/" class="d-inline-block text-decoration-none text-secondary mt-3">
+            <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+            <span style="font-size: 20px;">Back to artworks</span>
+        </a>
+    </p>
+</body>
+
+        @section Scripts{
+                <script>
+                $(document).ready(function () {
+                    $(".card").hover(function () {
+                        $(this).css("background-color", "#ECECEC");
+                        $(this).css("box-shadow", "5px 5px 10px lightgray");
+                    }, function () {
+                        $(this).css("background-color", "white");
+                        $(this).css("box-shadow", "0px 0px 0px lightgray");
+                    });
+
+                    $("#btn-sell").on("click", function() {
+                        console.log("sell artwork clicked");
+                        var id = @Model.Id;
+                        bootbox.prompt({
+                            title: 'Sell artwork',
+                            message: '<p>Please type in the price you would like (in euros):</p>',
+                            centerVertical: true,
+                            inputType: 'number',
+                            buttons: {
+                                cancel: { label: "Cancel", className: 'btn-secondary' },
+                                confirm: { label: "Save", className: 'btn-success' }
+                            },
+                            callback: function (result) {
+                                console.log("Bootbox result: " + result);
+                                if (result) {
+                                    window.location.href = '/Artworks/SellArtwork?id=' + id + '&price=' + result;
+                                }
+                            }
+                        });
+                    });
+                })
+                </script>
+        }

@@ -1,0 +1,123 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Data.Entity;
+
+<style>
+    .bootbox-radiobutton-list {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .form-check {
+        background-color: lightgray;
+        display: inline-block;
+        border-radius: 10px;
+        width: 48%;
+        height: 150px;
+        padding: 0;
+    }
+
+    .form-check label {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    .bootbox-input-radio {
+        position: absolute;
+        top: 0px;
+        left: 40px;
+        height: 20px;
+        width: 20px;
+        filter: hue-rotate(260deg);
+    }
+
+    .form-check label {
+        font-size: 22px;
+        text-align: center;
+        align-content: center;
+        padding: 10px;
+    }
+</style>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav navbar-right">
+            <li>
+                <a title="Manage" class="nav-link" href="@Url.Action("Index", "Manage", routeValues: null)">
+                    <img src='~/Content/Images/user.png' style="height: 25px; border-radius: 5px;" />
+                </a>
+            </li>
+            @if (User.IsInRole("User"))
+            {
+                var mail = User.Identity.GetUserName();
+                var db = new ArtGalleryApp.Models.ApplicationDbContext();
+                var tmp = db.Users.Include(m => m.Cart).FirstOrDefault(m => m.Email == mail);
+                <li>
+                    <a href="/Users/Favorites/@tmp.Id">
+                        <img src="~/Content/Images/favorites.png" style="height: 25px; margin-top: 10px; margin-left: 5px; margin-right: 5px;" />
+                    </a>
+                </li>
+                <li class="position-relative">
+                    <a href="/Users/Cart/@tmp.Id">
+                        <img src="~/Content/Images/cart.png" style="height: 25px; margin-top:10px; margin-left: 5px; margin-right: 5px;" />
+                    </a>
+                </li>
+                <li>
+                    <a href="/Tickets/Index/@tmp.Id">
+                        <img src="~/Content/Images/tickets.png" style="height: 25px; margin-top:10px; margin-left: 5px; margin-right: 5px;" />
+                    </a>
+                </li>
+            }
+            <li>
+                <a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log out</a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="navbar-nav navbar-right">
+        <li>
+            <a href="javascript:void(0)" id="registerLink" class="nav-link">Register</a>
+        </li>
+        <li>
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+        </li>
+    </ul>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        if (window.jQuery) {
+            console.log("script loaded");
+
+            $("#registerLink").on("click", function () {
+                console.log("register clicked");
+                bootbox.prompt({
+                    title: 'Choose type of user',
+                    message: '<p>Please select an option below:</p>',
+                    centerVertical: true,
+                    inputType: 'radio',
+                    inputOptions: [
+                        { text: 'I am an art lover, collector', value: '1' },
+                        { text: 'I am an artist', value: '2' }
+                    ],
+                    buttons: {
+                        cancel: { label: "Cancel", className: 'btn-secondary' },
+                        confirm: { label: "Continue", className: 'btn-success' }
+                    },
+                    callback: function (result) {
+                        console.log("Bootbox result: " + result);
+                        if (result) {
+                            window.location.href = '/Account/Register?id=' + result;
+                        }
+                    }
+                });
+            });
+        }
+    });
+</script>

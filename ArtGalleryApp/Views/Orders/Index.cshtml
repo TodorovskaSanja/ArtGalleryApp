@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ArtGalleryApp.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div style="min-height: 80vh;">
+    <h2 class="display-3 text-success">Orders</h2>
+    @if (Model.Count() == 0)
+    {
+        <div class="text-center bg-light p-5 m-4 align-items-center align-content-center" style="border-radius: 20px; min-height: 65vh;">
+            <img src="~/Content/Images/order.png" style="width: 200px;" />
+            <h3 class="display-6">You have no orders yet</h3>
+            <a href="/Artworks/" class="text-success fs-5">Browse artworks</a>
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order #</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone number</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Shipping</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <a href="/Orders/Details/@item.Id" class="text-decoration-none text-dark">
+                    <tr>
+                        <td><a href="/Orders/Details/@item.Id" class="text-success">Order @item.Id</a></td>
+                        <td>@item.Name @item.Surname</td>
+                        <td>@item.Email</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Address</td>
+                        <td>@item.City</td>
+                        <td>@item.Country</td>
+                        <td>@item.ShippingMethod</td>
+                        <td>@item.WhenOrdered</td>
+                        <td class="text-end">€@item.Total</td>
+                    </tr>
+                    </a>
+                }
+            </tbody>
+        </table>
+    }
+
+    @if (ViewBag.usrId != null)
+    {
+        <a href="/Users/Details/@ViewBag.usrId" class="d-inline-block text-decoration-none text-secondary mt-3">
+            <img src="~/Content/Images/left_arrow.png" style="width: 30px;" />
+            <span style="font-size: 20px;">View profile</span>
+        </a>
+    }
+</div>

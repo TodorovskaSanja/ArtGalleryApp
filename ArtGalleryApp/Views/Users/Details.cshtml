@@ -1,0 +1,93 @@
+﻿@model ArtGalleryApp.Models.User
+@using Microsoft.AspNet.Identity;
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <div class="d-flex align-items-center align-content-center">
+        <img src="@Model.ImageURL" style="width: 220px; height: 220px; object-fit: cover; border-radius: 50%;" />
+        <div class="d-inline-block ms-4">
+            <h1 class="display-3">@Model.Name @Model.Surname </h1>
+            @if (User.Identity.GetUserName() == Model.Email)
+            {
+                <div class="mt-3">
+                    <a href="/Users/Edit/@Model.Id"><button class="btn btn-secondary">Edit profile</button></a>
+                    <a href="/Users/Delete/@Model.Id"><button class="btn btn-danger">Delete profile</button></a>
+                </div>
+            }
+        </div>
+    </div>
+
+    <h3 class="mt-3">Following (@Model.FollowedArtists.Count())</h3>
+
+    @if (@Model.FollowedArtists.Count() == 0)
+    {
+        <div class="text-center bg-light m-4 p-2 align-content-center" style="border-radius: 20px;">
+            <img src="~/Content/Images/empty1.png" style="width: 150px;" />
+            <h3 class="display-6">No artists to show</h3>
+            <a href="/Artists/" class="text-success">Browse artists</a>
+        </div>
+    }
+    else
+    {
+        <div id="carousel" class="carousel slide d-flex align-items-baseline" data-bs-interval="false">
+            <div class="carousel-inner">
+                @{
+                    var allArts = Model.FollowedArtists.ToList();
+                    int chunkSize = 3;
+                    int total = allArts.Count;
+                    int slideIndex = 0;
+
+                    for (int i = 0; i < total; i += chunkSize)
+                    {
+                        var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                    }
+                }
+
+                @for (int i = 0; i < allArts.Count; i += chunkSize)
+                {
+                    var chunk = allArts.Skip(i).Take(chunkSize).ToList();
+                    <div class="carousel-item @(i == 0 ? "active" : "")">
+                        <div class="cards-wrapper d-flex">
+                            @foreach (var art in chunk)
+                            {
+                                <div class="card d-inline-block bg-light shadow mt-2 ms-2 me-2 ps-3" style="width: 32%; height: 130px;">
+                                    <a class="text-dark d-inline-block" href="/Artists/Details/@art.Id">
+                                        <div class="d-inline-block pt-3 pb-3"><img src="@art.ImageURL" style="width: 100px; height: 100px; object-fit: cover;" /></div>
+                                    </a>
+                                    <div class="d-inline-block">
+                                        <a class="text-dark" href="/Artists/Details/@art.Id">
+                                            <div class="d-inline-block text-start ps-3">
+                                                <h5 class="text-truncate" title="@art.Name @art.Surname" style="line-height: 28px;">@art.Name @art.Surname</h5>
+                                                <p>@art.Artworks.Count() artworks</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            @if (allArts.Count > 3)
+            {
+                <a class="carousel-control-prev text-dark" href="#carousel" role="button" data-bs-slide="prev" style="left:-100px; width: 100px;">
+                    <span class="carousel-control-prev-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                </a>
+                <a class="carousel-control-next text-dark" href="#carousel" role="button" data-bs-slide="next" style="right:-100px; width: 100px;">
+                    <span class="carousel-control-next-icon bg-secondary" aria-hidden="true" style="border-radius: 0px;"></span>
+                </a>
+            }
+        </div>
+    }
+
+    <div class="d-flex justify-content-between mt-4">
+        <a class="d-inline-block text-decoration-none text-dark text-center display-6 shadow" style="padding: 20px 0; width: 312px; background-color: #769065; border-radius: 10px;" href="/Users/Favorites/@Model.Id"><img src="~/Content/Images/link_favorites.png" style="width: 180px; padding-bottom: 20px;" /><br /><span>Favorite artworks</span></a>
+        <a class="d-inline-block text-decoration-none text-dark text-center display-6 shadow" style="padding: 20px 0; width: 312px; background-color: #8ba27b; border-radius: 10px;" href="/Users/Cart/@Model.Id"><img src="~/Content/Images/link_cart.png" style="width: 180px; padding-bottom: 20px;" /><br /><span>Cart</span></a>
+        <a class="d-inline-block text-decoration-none text-dark text-center display-6 shadow" style="padding: 20px 0; width: 312px; background-color: #a8ba9d; border-radius: 10px;" href="/Tickets/Index/@Model.Id"><img src="~/Content/Images/link_tickets.png" style="width: 180px; padding-bottom: 20px; " /><br /><span>Tickets</span></a>
+        <a class="d-inline-block text-decoration-none text-dark text-center display-6 shadow" style="padding: 20px 0; width: 312px; background-color: #b5c4ab; border-radius: 10px; " href="/Orders/Index/@Model.Id"><img src="~/Content/Images/link_orders.png" style="width: 180px; padding-bottom: 20px;" /><br /><span>Orders</span></a>
+    </div>
+</div>
